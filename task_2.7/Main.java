@@ -5,6 +5,14 @@
 public class Main {
     public static void main(String[] args) {
         //напишите тут ваш код
+        int num = 31;
+        boolean flag=false;
+        for (int i = 2; i < num; i++) {
+            if (num%i == 0) flag = true;
+
+        }
+            System.out.println(flag);
 
     }
+
 }
