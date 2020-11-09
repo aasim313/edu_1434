@@ -13,7 +13,22 @@
 
 public class Main {
     public static void main(String[] args) {
+
         //напишите тут ваш код
+        
+        String arr[] = {"Мама", "Мыла" ,"Раму"};
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    if (i!=j && i!=k && j!=k )
+                        System.out.println(arr[i]+arr[j]+arr[k]);
+                }
+
+            }
+
+        }
+
+
 
     }
 }
