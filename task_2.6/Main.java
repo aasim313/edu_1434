@@ -5,6 +5,12 @@
 public class Main {
     public static void main(String[] args) {
         //напишите тут ваш код
+        int a = 10;
+        int b = 3;
+        if (a%b==0)
+            System.out.println("делится без остатка");
+        else
+            System.out.println("делится с остатком. остаток от деления: " + a%b);
 
     }
 }
