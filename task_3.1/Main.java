@@ -9,8 +9,14 @@
 
 
 public class Main {
-    public static int min(int a, int b, int c) {
+    public static int min(int a, int b, int c) {        
         //напишите тут ваш код
+        int min;
+        if (a<=b && a<=c ) min = a;
+        else if (b<=a && b<=c) min = b;
+        else min = c;
+        return  min;
+               
     }
 
     public static void main(String[] args) {
