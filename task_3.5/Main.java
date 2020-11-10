@@ -12,9 +12,6 @@ public class Main {
      
     public static void printArr(int[] numbers, int i) {
         System.out.print(numbers[i] + " " );
-            if (i < numbers.length-1) {
-                i++;
-                printArr (numbers, i);
-                }   
-    
+            if (i < numbers.length-1) printArr (numbers, ++i);
+               
 }
