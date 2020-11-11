@@ -23,7 +23,7 @@ public class Main {
         int lengthMax = 1;
         for (int i = 1; i < 10; i++) {
             if (arr[i-1] == arr[i]) lengthNew++;
-            else if (lengthNew > lengthMax) {
+            else if (lengthNew != lengthMax) {
                 lengthMax = lengthNew;
                 lengthNew = 1;
             }
