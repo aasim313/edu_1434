@@ -22,6 +22,10 @@ public class Main {
         Mouse jerryMouse = new Mouse("Jerry", 12, 5);
 
         //напишите тут ваш код
+        Dog spikeDog  =new Dog("Спайк",30,true);
+        Cat tomCat = new Cat("Том","Grey",true);
+
+
     }
 }
 class Mouse {
@@ -33,5 +37,28 @@ class Mouse {
         this.name = name;
         this.height = height;
         this.tail = tail;
+    }
+}
+class Dog {
+    String name;
+    int weight;
+    boolean sleepStatus;
+
+    public Dog(String name, int weight, boolean sleepStatus) {
+        this.name = name;
+        this.weight = weight;
+        this.sleepStatus = sleepStatus;
+    }
+}
+
+class Cat {
+    String name;
+    String color;
+    boolean hungerStatus;
+
+    public Cat(String name, String color, boolean hungerStatus) {
+        this.name = name;
+        this.color = color;
+        this.hungerStatus = hungerStatus;
     }
 }
