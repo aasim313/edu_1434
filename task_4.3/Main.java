@@ -31,19 +31,11 @@ class Cat {
 
     public boolean fight(Cat anotherCat) {
         //напишите тут ваш код
-        int resultCat1 = 0;
-        int resultCat2 = 0;
-
-        if (this.age>anotherCat.age) resultCat1++;
-        else if(this.age<anotherCat.age) resultCat2++;
-
-        if (this.weight>anotherCat.weight) resultCat1++;
-        else if(this.weight<anotherCat.weight) resultCat2++;
-
-        if (this.strength>anotherCat.strength) resultCat1++;
-        else if(this.strength<anotherCat.strength) resultCat2++;
-
-        if (resultCat1>resultCat2) return true;
+        int result = 0;
+        if (this.age>anotherCat.age) result++;
+        if (this.weight>anotherCat.weight) result++;
+        if (this.strength>anotherCat.strength) result++;
+        if (result>1) return true;
         else return false;
     }
 }
