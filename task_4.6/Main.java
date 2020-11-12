@@ -19,6 +19,11 @@ public class Main {
         System.out.println("Мама Алексея: "+alex.getMother().getName());
         System.out.println("Бабушка Гоши: "+gosha.getMother().getMother().getName());
 
+        // Текст выполнего задания
+        gosha.aboutMe();
+
+
+
     }
 }
 
@@ -45,8 +50,22 @@ class Person{
     public Person getMother(){
         return this.mother;
     }
+    // Добавил метод getFather()
+    public Person getFather() {
+        return this.father;
+    }
+
     public void setHp(int hp){
         if (this.hp+hp>100) this.hp = 100;
         else this.hp = this.hp + hp;
+    }
+    public void aboutMe(){
+        System.out.println(
+         " Меня зовут " + this.getName() + "\n" +      // имя объекта"
+         " Имя моей мамы: " + this.mother.getName() + "\n" +//имя мамы"
+         " Имя моего папы: " + this.father.getName() + "\n" +//имя папы"
+         " У меня две бабушки, бабушка " + this.father.getMother().getName()/*имя бабушки*/  + " и " + this.mother.getMother().getName()/* имя бабушки"*/ + "\n" +
+         " У меня два деда, деда " + this.father.getFather().getName() /* имя деда */ + " и " + this.mother.getFather().getName()/* имя деда"*/
+        );
     }
 }
