@@ -18,17 +18,28 @@
 public class Main {
     public static void main(String[] args) {
 
+        Cat cat1 = new Cat(7,2,3);
+        Cat cat2 = new Cat(2,3,1);
+
+        System.out.println("Cat 1 vin Cat 2 :" + cat1.fight(cat2));
+        System.out.println("Cat 2 vin Cat 1 :" + cat1.fight(cat1));
     }
 }
 
 class Cat {
-    public int age;
-    public int weight;
-    public int strength;
+    private int age;
+    private int weight;
+    private int strength;
 
-    public Cat() {
+    public Cat(int age, int weight, int strength) {
+        this.age = age;
+        this.weight = weight;
+        this.strength = strength;
     }
 
+    /*   public Cat() {
+        }
+    */
     public boolean fight(Cat anotherCat) {
         //напишите тут ваш код
         int result = 0;
