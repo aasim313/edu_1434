@@ -23,24 +23,33 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        List <String> familyList = new ArrayList<>();
+        List <String> sityList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
-        List<String> list = new ArrayList<>();
+        System.out.println("введите фамилии (по завершении нажмите Enter)");
         while (true) {
+            System.out.print("фамилия " + (int) (familyList.size()+1) + " :");
             String family = scanner.nextLine();
-            if (family.isEmpty()) {
-                break;
-            }
-
-            list.add(family);
+            if (family.isEmpty()) break;
+            else  if (familyList.indexOf(family)!=-1) System.out.println(family + " уже есть в списке, введите другую фамилию");
+            else familyList.add(family);
         }
 
-        // Read the house number
-        int houseNumber = scanner.nextInt();
-
-        if (0 <= houseNumber && houseNumber < list.size()) {
-            String familyName = list.get(houseNumber);
-            System.out.println(familyName);
+        System.out.println("введите Города (по завершении нажмите Enter) \n");
+        while (sityList.size() < familyList.size()) {
+            System.out.print("город " + (int) (sityList.size()+1) +"/" + (int) (familyList.size()+1) + " :");
+            String sity = scanner.nextLine();
+            if (sity.isEmpty()) System.out.println("городов меньше семей, нелюходимо ввести еще " +(int)(familyList.size()-sityList.size()) + " готдода(ов)");
+            else sityList.add(sity);
         }
+
+        
+        System.out.println("Введите фамилию из списка: " + familyList);
+        String family = scanner.nextLine();
+        int index = familyList.indexOf(family);
+        if (index!=-1) System.out.println(family + ": город " + sityList.get(index));
+        else System.out.println("нет такой фамилии");
+
     }
 }
