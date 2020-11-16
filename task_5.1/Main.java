@@ -17,5 +17,15 @@ public class Main {
         names.add("Георгий");
         names.add("Павел");
         names.add("Руслан");
+        // решение
+
+         // System.out.println("Задана коллекция: " + names);
+        for (int i = 0; i < names.size()-1; i++) {
+             // System.out.print(names.get(i) + ": ");
+            for (int j = i+1; j < names.size(); j++) {
+                if (names.get(i).equals(names.get(j))) names.remove(j);
+            }
+             // System.out.println(names);
+        }
     }
 }
