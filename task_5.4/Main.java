@@ -19,8 +19,34 @@
 10
 */
 
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        // напишите тут ваш код
+    public static void main(String[] args) throws IOException{
+// Получение из консоли пути к файлу
+        Scanner scanConsole = new Scanner(System.in);
+        System.out.print("Введите путь к файлу:");
+        String link = scanConsole.nextLine();
+        FileReader fileReader  = new FileReader(link);
+//считывание из файла
+        Scanner scanFileReader = new Scanner(fileReader);
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        String nextLine="";
+        int nextInt;
+
+        while (scanFileReader.hasNextLine()){
+            nextLine = scanFileReader.nextLine();
+            nextInt=Integer.parseInt(nextLine) ;
+           if (nextInt % 2 == 0 ) arrayList.add(nextInt);
+        }
+        fileReader.close();
+//сортировка коллекции и вывод в консоль
+        Collections.sort(arrayList);
+        System.out.println(arrayList);
     }
 }
