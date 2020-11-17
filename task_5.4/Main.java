@@ -47,6 +47,6 @@ public class Main {
         fileReader.close();
 //сортировка коллекции и вывод в консоль
         Collections.sort(arrayList);
-        System.out.println(arrayList);
+        arrayList.forEach(System.out::println);
     }
 }
