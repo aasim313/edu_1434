@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
-
     public static void main(String[] args) {
         String name = "new";
         try {
@@ -37,7 +36,7 @@ public class Client {
                 } else  msg = name+ ": "+msg;
 
                 out.writeUTF(msg);
-            }  
+          }
         }catch (IOException exception){
             exception.printStackTrace();
         }
