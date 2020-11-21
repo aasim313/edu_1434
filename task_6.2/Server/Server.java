@@ -8,8 +8,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
+    static ArrayList<Client> clientList = new ArrayList<>();
+
     public static void main(String[] args) {
-        ArrayList<Socket> clients = new ArrayList<>();
         Socket socket = null;
         try {
             ServerSocket serverSocket = new ServerSocket(8189);
@@ -19,23 +20,24 @@ public class Server {
                 DataInputStream in = new DataInputStream(socket.getInputStream()); // Поток ввода
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream()); // Поток вывода
                 System.out.println("Клиент подключился");
-                clients.add(socket); //Добавляем клиента в список
+
+                clientList.add(new Client(socket,in.hashCode()));  //Добавляем клиента в список
+
+
                 Thread thread = new Thread(new Runnable() { // Открываем поток для клиента
                     @Override
                     public void run() {
                         try {
                             out.writeUTF("Привет, напиши свое имя!");
                             while (true){
-                                // System.out.println("Ожидаем сообщение...");
                                 String request = in.readUTF();
-                                // System.out.println("Клиент прислал сообщение: "+request);
-                                   System.out.println(request);
+                                System.out.println(request);
 
-                                for (Socket socket: clients) { // Перебираем список клиентов
-                                    DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                                 // out.writeUTF("Какой-то клиент отправил сообщение: "+request);
-                                    out.writeUTF(request);
-
+// New
+                                for (Client client:clientList) {
+                                    //int hashCode = client.getHashCode();
+                                    DataOutputStream out = new DataOutputStream(client.getSocket().getOutputStream());
+                                    if (client.getHashCode()!=in.hashCode()) out.writeUTF(request);
                                 }
                             }
                         }catch (IOException exception) {
@@ -49,4 +51,35 @@ public class Server {
             exception.printStackTrace();
         }
     }
+
+// новый класс - клиенты
+public static class Client {
+        private  Socket socket;
+        private  int hashCode;
+
+    public Client(Socket socket, int hashCode) {
+        this.socket = socket;
+        this.hashCode = hashCode;
+    }
+
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    public int getHashCode() {
+        return hashCode;
+    }
+
+    public void setHashCode(int hashCode) {
+        this.hashCode = hashCode;
+    }
 }
+
+
+}
+
