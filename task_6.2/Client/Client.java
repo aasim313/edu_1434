@@ -28,15 +28,13 @@ public class Client {
             });
             thread.start();
             Scanner scanner = new Scanner(System.in);
+          
             while(true){
                 String msg = scanner.nextLine();
-                if (name.equals("new")) {
-                    name = msg;
-                    msg = "Подключился " + name;
-                } else  msg = name+ ": "+msg;
-
-                out.writeUTF(msg);
-          }
+                if (name.equals("new")) name = msg;
+                 out.writeUTF(msg);
+            }
+            
         }catch (IOException exception){
             exception.printStackTrace();
         }
