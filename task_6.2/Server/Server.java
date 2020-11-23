@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Server {
     static ArrayList<Client> clientList = new ArrayList<>();
+    static String senderNickName;
 
     public static void main(String[] args) {
         Socket socket = null;
@@ -22,8 +23,6 @@ public class Server {
                 System.out.println("Клиент подключился");
 
                 clientList.add(new Client(socket,in.hashCode()));  //Добавляем клиента в список
-
-
                 Thread thread = new Thread(new Runnable() { // Открываем поток для клиента
                     @Override
                     public void run() {
@@ -31,13 +30,30 @@ public class Server {
                             out.writeUTF("Привет, напиши свое имя!");
                             while (true){
                                 String request = in.readUTF();
-                                System.out.println(request);
+
+                                for (Client client:clientList) {   // определяем имя отправителя
+                                    if (client.getHashCode() == in.hashCode()) senderNickName = client.getNickName();
+                                }
+
+                                String msg = senderNickName + ": " + request;
+                                System.out.println(msg);
 
 // New
                                 for (Client client:clientList) {
                                     //int hashCode = client.getHashCode();
                                     DataOutputStream out = new DataOutputStream(client.getSocket().getOutputStream());
-                                    if (client.getHashCode()!=in.hashCode()) out.writeUTF(request);
+
+                                    if (client.getHashCode() == in.hashCode())  {         // это - отправитель
+                                         if (senderNickName.equals("New client")){          // имя не задано
+                                             client.setNickName(request);
+                                             out.writeUTF("Привет, " + client.getNickName());
+                                         } //else { out.writeUTF( "Ваше сообщение: " + request );}   // не дублируем сообщение в терминале отправителя
+                                    } else {                                                    // этот клиент - не отправитель
+                                        out.writeUTF(msg);
+                                    }
+
+
+
                                 }
                             }
                         }catch (IOException exception) {
@@ -56,6 +72,7 @@ public class Server {
 public static class Client {
         private  Socket socket;
         private  int hashCode;
+        private String nickName = "New client";
 
     public Client(Socket socket, int hashCode) {
         this.socket = socket;
@@ -67,19 +84,14 @@ public static class Client {
         return socket;
     }
 
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
+    public void setSocket(Socket socket) {this.socket = socket;}
 
-    public int getHashCode() {
-        return hashCode;
-    }
+    public int getHashCode() {return hashCode;}
 
-    public void setHashCode(int hashCode) {
-        this.hashCode = hashCode;
-    }
+    public void setHashCode(int hashCode) {this.hashCode = hashCode;}
+    public String getNickName () {return this.nickName;}
+    public void  setNickName (String nickName) {this.nickName = nickName;}
+
 }
-
-
 }
 
