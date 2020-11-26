@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controller">
+   <children>
+      <TextArea fx:id="messageWindow" editable="false" prefHeight="332.0" prefWidth="600.0" />
+      <HBox prefHeight="174.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="textField" onAction="#send" prefHeight="39.0" prefWidth="331.0" promptText="введите сообщение" />
+            <Button mnemonicParsing="false" onAction="#send" prefHeight="107.0" prefWidth="272.0" text="Отправить" />
+         </children></HBox>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button onAction="#connect" mnemonicParsing="false" text="Подключиться " />
+        </items>
+      </ToolBar>
+   </children>
+</VBox>
